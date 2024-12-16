@@ -1,0 +1,25 @@
+version: "3"
+services:
+  directus_mp: # Rename the service (container name will be derived from this)
+    image: directus/directus:10.12.1
+    container_name: MP-directus # Set the specific container name
+    ports:
+      - "8055:8055"
+    volumes:
+      - ./database:/directus/database
+      - ./uploads:/directus/uploads
+      - ./extensions:/directus/extensions
+    environment:
+      SECRET: "CCT"
+      ADMIN_EMAIL: "iris.baais@gmail.com"
+      ADMIN_PASSWORD: "mealplan"
+      DB_CLIENT: "sqlite3"
+      DB_FILENAME: "/directus/database/data.db"
+      WEBSOCKETS_ENABLED: "true"
+      CORS_ENABLED: "true"
+      CORS_ORIGIN: "http://localhost:5173"
+      CORS_ALLOWED_ORIGINS: "http://localhost:5173"
+      CORS_METHODS: "GET, POST, PUT, DELETE, OPTIONS, PATCH"
+      CORS_HEADERS: "Content-Type, Authorization, Access-Control-Allow-Origin"
+      CORS_CREDENTIALS: "true"
+
